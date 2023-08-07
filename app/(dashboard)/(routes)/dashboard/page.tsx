@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function DashboardPage() {
-  return <div>Dashboard page</div>;
+  return <p> Dashboard page(protected)</p>;
 }
