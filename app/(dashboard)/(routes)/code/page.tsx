@@ -1,26 +1,32 @@
 "use client";
-import { Heading } from "@/components/heading";
-import axios from "axios";
+
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { MessageCircle } from "lucide-react";
+import axios from "axios";
+import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constants";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import ReactMarkdown from "react-markdown";
+import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
-import { Empty } from "@/components/ui/empty";
-import { Loader } from "@/components/loader";
+
+import { Heading } from "@/components/heading";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
+import { Loader } from "@/components/loader";
+import { Empty } from "@/components/ui/empty";
+
 import { UserAvatar } from "@/components/ui/user-avatar";
 import { BotAvatar } from "@/components/ui/bot-avatar";
+import { formSchema } from "./constants";
 
-const ConversationPage = () => {
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+const CodePage = () => {
   const router = useRouter();
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,28 +42,30 @@ const ConversationPage = () => {
         role: "user",
         content: values.prompt,
       };
-
       const newMessages = [...messages, userMessage];
-      const response = await axios.post("/api/code", {
-        messages: newMessages,
-      });
 
+      const response = await axios.post("/api/code", { messages: newMessages });
       setMessages((current) => [...current, userMessage, response.data]);
+
       form.reset();
-    } catch (error: unknown) {
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+      } else {
+        toast.error("Something went wrong.");
+      }
     } finally {
       router.refresh();
     }
   };
+
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our most advance conversation model."
-        icon={MessageCircle}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate code using descriptive text."
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
       <div className="px-4 lg:px-8">
         <div>
@@ -85,7 +93,7 @@ const ConversationPage = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Simple toggle button using react hooks"
+                        placeholder="Simple toggle button using react hooks."
                         {...field}
                       />
                     </FormControl>
@@ -124,7 +132,21 @@ const ConversationPage = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-sm">{message.content}</p>
+                <ReactMarkdown
+                  components={{
+                    pre: ({ node, ...props }) => (
+                      <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                        <pre {...props} />
+                      </div>
+                    ),
+                    code: ({ node, ...props }) => (
+                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                    ),
+                  }}
+                  className="text-sm overflow-hidden leading-7"
+                >
+                  {message.content || ""}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
@@ -134,4 +156,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodePage;
