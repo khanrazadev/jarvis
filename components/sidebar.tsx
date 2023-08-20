@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,8 +14,7 @@ import {
   Settings,
   VideoIcon,
 } from "lucide-react";
-
-const poppins = Montserrat({ weight: "600", subsets: ["latin"] });
+import FreeCounter from "./freecounter";
 
 const routes = [
   {
@@ -62,7 +60,11 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+  isPro: boolean;
+}
+const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
   const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -71,9 +73,7 @@ const Sidebar = () => {
           <div className="relative h-8 w-8 mr-4">
             <Image fill alt="Logo" src="/mainlogo.png" />
           </div>
-          <h1 className={cn("text-2xl font-bold", poppins.className)}>
-            Jarvis
-          </h1>
+          <h1 className="text-2xl font-bold font-mono">Jarvis</h1>
         </Link>
         <div className="space-y-1">
           {routes.map((route) => (
@@ -93,8 +93,10 @@ const Sidebar = () => {
               </div>
             </Link>
           ))}
-        </div>{" "}
+        </div>
       </div>
+
+      <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
     </div>
   );
 };

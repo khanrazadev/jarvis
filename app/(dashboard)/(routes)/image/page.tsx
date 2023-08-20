@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const PhotoPage = () => {
   const router = useRouter();
@@ -41,6 +42,7 @@ const PhotoPage = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+  const proModal = useProModal();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -53,6 +55,7 @@ const PhotoPage = () => {
       setPhotos(urls);
     } catch (error: any) {
       if (error?.response?.status === 403) {
+        proModal.onOpen();
       } else {
         toast.error("Something went wrong.");
       }

@@ -17,6 +17,7 @@ import { Loader } from "@/components/loader";
 import { Empty } from "@/components/ui/empty";
 
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const VideoPage = () => {
   const router = useRouter();
@@ -30,6 +31,7 @@ const VideoPage = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+  const proModal = useProModal();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -41,6 +43,7 @@ const VideoPage = () => {
       form.reset();
     } catch (error: any) {
       if (error?.response?.status === 403) {
+        proModal.onOpen();
       } else {
         toast.error("Something went wrong.");
       }

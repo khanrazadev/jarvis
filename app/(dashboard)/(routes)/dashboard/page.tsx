@@ -12,7 +12,7 @@ import {
   Video,
 } from "lucide-react";
 
-const tools = [
+export const tools = [
   {
     label: "Conversation",
     icon: MessageSquare,

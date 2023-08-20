@@ -22,6 +22,7 @@ import { Empty } from "@/components/ui/empty";
 import { UserAvatar } from "@/components/ui/user-avatar";
 import { BotAvatar } from "@/components/ui/bot-avatar";
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const CodePage = () => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const CodePage = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+  const proModal = useProModal();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -50,6 +52,7 @@ const CodePage = () => {
       form.reset();
     } catch (error: any) {
       if (error?.response?.status === 403) {
+        proModal.onOpen();
       } else {
         toast.error("Something went wrong.");
       }
