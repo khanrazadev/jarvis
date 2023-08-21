@@ -1,54 +1,11 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import {
-  ArrowRight,
-  Code,
-  Image,
-  MessageSquare,
-  Music2Icon,
-  Video,
-} from "lucide-react";
 
-const tools = [
-  {
-    label: "Conversation",
-    icon: MessageSquare,
-    color: "text-violet-500",
-    bgColor: "bg-violet-500/10",
-    href: "/conversation",
-  },
-  {
-    label: "Code Generation",
-    icon: Code,
-    color: "text-green-700",
-    bgColor: "bg-green-700/10",
-    href: "/code",
-  },
-  {
-    label: "Music Generation",
-    icon: Music2Icon,
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10",
-    href: "/music",
-  },
-  {
-    label: "Image Generation",
-    icon: Image,
-    color: "text-pink-700",
-    bgColor: "bg-pink-700/10",
-    href: "/image",
-  },
-  {
-    label: "Video Generation",
-    icon: Video,
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-    href: "/video",
-  },
-];
+import { tools } from "@/constants";
+import { ArrowRight } from "lucide-react";
+
 export default function DashboardPage() {
   const router = useRouter();
   return (

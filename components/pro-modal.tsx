@@ -2,14 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import {
-  Check,
-  Code,
-  MessageSquare,
-  Music2Icon,
-  Video,
-  Zap,
-} from "lucide-react";
+import { Check, Zap } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
@@ -26,39 +19,7 @@ import {
 import { Badge } from "./ui/badge";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { useRouter } from "next/navigation";
-
-const tools = [
-  {
-    label: "Conversation",
-    icon: MessageSquare,
-    color: "text-violet-500",
-    bgColor: "bg-violet-500/10",
-  },
-  {
-    label: "Code Generation",
-    icon: Code,
-    color: "text-green-700",
-    bgColor: "bg-green-700/10",
-  },
-  {
-    label: "Music Generation",
-    icon: Music2Icon,
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10",
-  },
-  {
-    label: "Image Generation",
-    icon: Image,
-    color: "text-pink-700",
-    bgColor: "bg-pink-700/10",
-  },
-  {
-    label: "Video Generation",
-    icon: Video,
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-  },
-];
+import { tools } from "@/constants";
 
 export const ProModal = () => {
   const router = useRouter();
