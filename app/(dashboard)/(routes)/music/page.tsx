@@ -103,11 +103,7 @@ const MusicPage = () => {
             </Button>
           </form>
         </Form>
-        {isLoading && (
-          <div className="p-20">
-            <Loader label="Jarvis is generating music..." />
-          </div>
-        )}
+        {isLoading && <Loader label="Jarvis is generating music..." />}
         {!music && !isLoading && <Empty label="No music generated." />}
         {music && (
           <audio controls className="w-full mt-8">

@@ -169,11 +169,7 @@ const PhotoPage = () => {
             </Button>
           </form>
         </Form>
-        {isLoading && (
-          <div className="p-20">
-            <Loader label="Jarvis is generating image..." />
-          </div>
-        )}
+        {isLoading && <Loader label="Jarvis is generating image..." />}
         {photos.length === 0 && !isLoading && (
           <Empty label="No images generated." />
         )}

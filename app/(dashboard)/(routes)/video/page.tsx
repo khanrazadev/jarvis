@@ -103,11 +103,7 @@ const VideoPage = () => {
             </Button>
           </form>
         </Form>
-        {isLoading && (
-          <div className="p-20">
-            <Loader label="Jarvis is generating video..." />
-          </div>
-        )}
+        {isLoading && <Loader label="Jarvis is generating video..." />}
         {!video && !isLoading && <Empty label="No video files generated." />}
         {video && (
           <video
