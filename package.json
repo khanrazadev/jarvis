@@ -31,7 +31,6 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "crisp-sdk-web": "^1.0.21",
-    "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "lucide-react": "^0.259.0",
     "next": "13.4.9",
@@ -59,6 +58,8 @@
     "@types/node": "^20.5.0",
     "@types/prismjs": "^1.26.0",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "eslint": "^8.47.0",
+    "eslint-config-react-app": "^7.0.1",
     "prisma": "^5.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
