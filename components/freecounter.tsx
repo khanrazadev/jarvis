@@ -15,14 +15,14 @@ function FreeCounter({ apiLimitCount = 0, isPro = false }: FreeCounterProps) {
   if (isPro) return null;
   return (
     <div className="px-3">
-      <Card className="bg-white/10 border-0">
+      <Card className=" bg-gray-900 text-gray-300 font-mono border-0">
         <CardContent className="py-6">
           <div className="text-center text-sm text-white mb-4 space-y-2">
             <p>
               {apiLimitCount} / {MAX_FREE_COUNTS} Free Generations
             </p>
             <Progress
-              className="h-3"
+              className="h-3 bg-gray-800"
               value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
             />
           </div>

@@ -67,7 +67,7 @@ interface SidebarProps {
 const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
   const pathname = usePathname();
   return (
-    <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
+    <div className=" bg-gray-800 space-y-4 py-4 flex flex-col h-full text-gray-300">
       <div className="px-3 py-2 flex-1">
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
           <div className="relative h-8 w-8 mr-4">
@@ -78,12 +78,15 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
         <div className="space-y-1">
           {routes.map((route) => (
             <Link
+              style={{
+                transitionDuration: "0.3s",
+              }}
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                "bg-gray-800 text-gray-300 p-3 items-center  hover:bg-gray-900 transform hover:scale-105 text-sm group flex w-full justify-start font-medium cursor-pointer  rounded-lg transition",
                 pathname === route.href
-                  ? "text-white bg-white/10"
+                  ? "text-gray-300 bg-gray-900"
                   : "text-zinc-400"
               )}
             >

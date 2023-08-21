@@ -73,6 +73,7 @@ const ConversationPage = () => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="
                 rounded-lg 
+                border-gray-700
                 border 
                 w-full 
                 p-4 
@@ -90,7 +91,6 @@ const ConversationPage = () => {
                   <FormItem className="col-span-12 lg:col-span-10">
                     <FormControl className="m-0 p-0">
                       <Input
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         placeholder="Simple toggle button using react hooks"
                         {...field}
@@ -124,10 +124,10 @@ const ConversationPage = () => {
               <div
                 key={message.content}
                 className={cn(
-                  "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                  "p-8 w-full bg-gray-900 text-gray-300 flex items-start gap-x-8 rounded-lg",
                   message.role === "user"
-                    ? "bg-white border border-black/10"
-                    : "bg-muted"
+                    ? "bg-gray-800 border border-black/10"
+                    : "bg-gray-800"
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}

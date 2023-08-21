@@ -79,6 +79,7 @@ const PhotoPage = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="
               rounded-lg 
+            border-gray-700
               border 
               w-full 
               p-4 
@@ -96,7 +97,6 @@ const PhotoPage = () => {
                 <FormItem className="col-span-12 lg:col-span-6">
                   <FormControl className="m-0 p-0">
                     <Input
-                      className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                       disabled={isLoading}
                       placeholder="A picture of a horse in Swiss alps"
                       {...field}
@@ -121,7 +121,7 @@ const PhotoPage = () => {
                         <SelectValue defaultValue={field.value} />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 text-gray-300">
                       {amountOptions.map((option) => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}
@@ -148,7 +148,7 @@ const PhotoPage = () => {
                         <SelectValue defaultValue={field.value} />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 text-gray-300">
                       {resolutionOptions.map((option) => (
                         <SelectItem key={option.value} value={option.value}>
                           {option.label}

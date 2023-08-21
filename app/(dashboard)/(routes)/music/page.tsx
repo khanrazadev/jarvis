@@ -69,6 +69,7 @@ const MusicPage = () => {
               rounded-lg 
               border 
               w-full 
+              border-gray-700
               p-4 
               px-3 
               md:px-6 
@@ -84,7 +85,6 @@ const MusicPage = () => {
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
                     <Input
-                      className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                       disabled={isLoading}
                       placeholder="Piano solo"
                       {...field}
