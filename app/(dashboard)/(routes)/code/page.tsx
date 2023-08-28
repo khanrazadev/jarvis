@@ -115,11 +115,7 @@ const CodePage = () => {
           </Form>
         </div>
         <div className="space-y-4 mt-4">
-          {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-              <Loader label="Jarvis is generating code..." />
-            </div>
-          )}
+          {isLoading && <Loader label="Jarvis is generating code..." />}
           {messages.length === 0 && !isLoading && (
             <Empty label="No conversation started." />
           )}
@@ -130,8 +126,8 @@ const CodePage = () => {
                 className={cn(
                   "p-8 w-full flex items-start gap-x-8 rounded-lg",
                   message.role === "user"
-                    ? "bg-white border border-black/10"
-                    : "bg-muted"
+                    ? "bg-gray-800 border border-black/10"
+                    : "bg-gray-800"
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
