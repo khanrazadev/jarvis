@@ -30,7 +30,8 @@ export async function POST(req: Request) {
     if (!freeTrail && !isPro) {
       return new NextResponse("Free trail has expired.", { status: 403 });
     }
-    const response = await openai.createChatCompletion({
+    //@ts-ignore
+    const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages,
     });
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
       await increaseApiLimit();
     }
 
-    return NextResponse.json(response.data.choices[0].message);
+    return NextResponse.json(response.choices[0].message);
   } catch (error) {
     console.log("[CONVERSATION_ERROR]", error);
     return new NextResponse("Internal error", { status: 500 });
