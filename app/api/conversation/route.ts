@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       return new NextResponse("Free trail has expired.", { status: 403 });
     }
     //@ts-ignore
-    const response = await openai.chat.completions.create({
+    const response = await openai.ChatCompletion.create({
       model: "gpt-3.5-turbo",
       messages,
     });
