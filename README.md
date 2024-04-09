@@ -58,7 +58,7 @@ DATABASE_URL=""
 ```
 **Setup Prisma**
 
-Add MySQL Database (I used MongoDB)
+Add MongoDB Database (I used Atlas)
 
 ```bash
 npx prisma generate
