@@ -75,6 +75,22 @@ body,
   }
 }
 
+.cl-formButtonPrimary {
+  background-color: rgb(162 28 175);
+}
+.cl-formButtonPrimary:hover {
+  background-color: rgba(163, 28, 175, 0.833);
+}
+.cl-internal-b3fm6y {
+  background-color: rgb(162 28 175);
+}
+.cl-footerActionLink {
+  color: rgb(162 28 175);
+}
+
+.cl-internal-uy11u8 {
+  background-color: rgba(21, 31, 53, 0.486);
+}
 @layer base {
   * {
     @apply border-border;
